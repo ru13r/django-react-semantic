@@ -1,0 +1,24 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block head_title %}
+    This is a content page!
+{% endblock head_title %}
+
+{% block content %}
+    <div class="ui vertical stripe segment">
+        <div class="ui middle aligned stackable grid main text container">
+            <div class="row">
+                <div class="text column">
+                    <h3 class="ui header">We Help Companies and Companions</h3>
+                    {% lorem 1 p %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <a class="ui huge button">Check Them Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

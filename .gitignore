@@ -1,0 +1,19 @@
+*.pyc
+
+# npm
+node_modules
+npm-debug.log
+
+# ide
+.idea
+
+# data
+*.dump
+
+# webpack
+assets/bundles/*
+/webpack-stats.json
+
+static/
+
+db.sqlite3

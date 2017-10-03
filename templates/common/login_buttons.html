@@ -1,0 +1,9 @@
+<div class="right item">
+    {% if request.user.is_authenticated %}
+        <span>Hello, <strong>{{ user }}</strong>!&nbsp;</span>
+        <a class="ui inverted button" href="{% url 'account_logout' %}">Log out</a>
+    {% else %}
+        <a class="ui inverted button" href="{% url 'account_login' %}">Log in</a>
+        <a class="ui inverted button" href="{% url 'account_signup' %}">Sign Up</a>
+    {% endif %}
+</div>

@@ -1,0 +1,28 @@
+{% extends 'common/base.html' %}
+{% load webpack_loader %}
+{% load static %}
+
+
+{% block head_title %}
+    This is a sample page
+{% endblock head_title %}
+
+{% block content %}
+        <div class="ui vertical stripe segment">
+            <div class="ui middle aligned stackable grid container">
+                <div class="row">
+                    <div class="column">
+                        You need to be logged in to see this page.
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column" id="react-test">
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock content %}
+
+{% block specific_js %}
+    {% render_bundle 'react_test' 'js' %}
+{% endblock specific_js %}
