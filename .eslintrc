@@ -1,0 +1,13 @@
+{
+  "rules": {
+    "quotes": [
+      1,
+      "single"
+    ]
+  },
+  "parser": "babel-eslint",
+  "plugins": [
+    "babel",
+    "react"
+  ]
+}
