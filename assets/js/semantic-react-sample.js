@@ -1,13 +1,17 @@
+import 'babel-polyfill';
 import React from 'react';
-import {Button, Header, Container, Segment, Grid} from 'semantic-ui-react'
 
+import {Button, Header, Container, Grid} from 'semantic-ui-react'
 
-class Item extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+type ItemProps = {
+    name: string,
+    description: string
+}
 
-    render() {
+class Item extends React.Component<ItemProps> {
+    props: ItemProps;
+
+    render(): React.Node {
         return (
             <Container text>
                 <Header content={this.props.name}/>
@@ -21,23 +25,28 @@ class Item extends React.Component {
     }
 }
 
-class App extends React.Component {
+type AppProps = {}
 
-    constructor(props) {
+type AppState = {
+    my_objects: Array<Object>
+}
+
+class App extends React.Component<AppProps, AppState> {
+
+    constructor(props: Object) {
         super(props);
         this.state = {
             my_objects: [],
-            number: 0
         };
     }
 
     async loadObjects() {
 
         let my_options = {
-            "credentials": "include"
+            'credentials': 'include'
         };
         this.setState({
-            my_objects: await fetch("/api/list.json", my_options).then(response => response.json())
+            my_objects: await fetch('/api/list.json', my_options).then(response => response.json())
         })
     }
 
@@ -46,11 +55,14 @@ class App extends React.Component {
     }
 
     render() {
+
+
+
         return (
             <div>
                 <Grid>
-                    {this.state.my_objects.map(obj => (
-                            <Grid.Row>
+                    {this.state.my_objects.map( (obj, i) => (
+                            <Grid.Row key={i}>
                                 <Item name={obj.name} description={obj.description}/>
                             </Grid.Row>
                         )

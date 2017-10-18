@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const BundleTracker = require('webpack-bundle-tracker');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
-var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// let BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const loaders = {
     css: {
@@ -57,7 +57,14 @@ const config = {
                         options: {
                             babelrc: false,
                             presets: [
-                                'es2015',
+                                ['env', {
+                                    'targets': {
+                                        'browsers': [
+                                            '> 1%',
+                                            'last 2 versions']
+                                    },
+                                    'debug': true,
+                                }],
                                 'react'
                             ]
                         }
@@ -77,7 +84,7 @@ const config = {
                         fallback: 'style-loader',
                         use: loaders.css
                     }))
-                   // use: ['style-loader', 'css-loader'],
+                    // use: ['style-loader', 'css-loader'],
                 },
                 {
                     test: /\.less/,
@@ -95,7 +102,7 @@ const config = {
 
         output: {
             path: path.resolve('./assets/bundles/'),
-            filename: "[name].js",
+            filename: '[name].js',
             publicPath: 'http://localhost:3000/assets/bundles/', // Tell django to use this URL to load packages and not use STATIC_URL + bundle_name
 
         },
@@ -107,8 +114,8 @@ const config = {
             new webpack.NoEmitOnErrorsPlugin(), // don't reload if there is an error
             new BundleTracker({filename: './webpack-stats.json'}),
             new webpack.ProvidePlugin({
-                $: "jquery",
-                jQuery: "jquery"
+                $: 'jquery',
+                jQuery: 'jquery'
             }),
             // new BundleAnalyzerPlugin({
             //     analyzerMode: 'static'
